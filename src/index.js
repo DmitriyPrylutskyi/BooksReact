@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SearchComponent from './components/SearchComponents';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SearchComponent mytext="test text" someOtherProperty={Math.random()}/>
+    <App></App>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchResultComponent from "./SearchResultComponent";
+import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
 
 function SearchComponent(props) {
 
@@ -7,7 +8,6 @@ function SearchComponent(props) {
     const [searchResult, setSearchResult] = useState({});
 
     function inputHandler(evt) {
-        console.log("Input:", evt.target.value);
         setSearchText(evt.target.value);
     }
 
@@ -19,7 +19,6 @@ function SearchComponent(props) {
             })
             .then(value => {
                 setSearchResult(value);
-                console.dir(value);
             })
             .catch(reason => {
                 setSearchResult({});
@@ -28,15 +27,27 @@ function SearchComponent(props) {
     }
 
     return(
-        <>
-            <input type="text" onInput={inputHandler}/>
-            <button onClick={search}>Search</button>
-                <div>
-                    Search text: {searchText}
-                </div>
+      <Container>
+          <Row>
+            <Col>
+              <InputGroup className="mb-3">
+                <Button
+                  variant="outline-secondary"
+                  onClick={search}
+                >
+                  Search
+                </Button>
+                <FormControl
+                  aria-label="search text"
+                  aria-describedby="search"
+                  onInput={inputHandler}
+                />
+              </InputGroup>
+            </Col>
+          </Row>
 
-                <SearchResultComponent items={searchResult.items}/>
-        </>
+            <SearchResultComponent items={searchResult.items}/>
+      </Container>
     );
 }
 
